@@ -26,7 +26,8 @@ var listOfBroadband = function(res){
         }
         listOfBroadbands.push(tempTempObject);
     }
-    res.json(listOfBroadband);
+    console.log(listOfBroadbands);
+    res.json(listOfBroadbands);
 }
 
 
