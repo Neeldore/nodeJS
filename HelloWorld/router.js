@@ -3,4 +3,7 @@ module.exports = function (app) {
     app.get('/', function (req, res) {
         cryptoWatch.getPrices(res);
     })
+    app.get('/broadband', function (req, res) {
+        cryptoWatch.listOfBroadband(res);
+    })
 }

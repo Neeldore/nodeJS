@@ -11,6 +11,24 @@ var getPrices = function (res) {
     })
 
 }
+var listOfBroadband = function(res){
+    var listOfBroadbands = [];
+    var tempObject = {
+        Name : ["Hathway" , "ACT" , "Spectranet" , "NET" , "GCN" , "BBNL"] ,
+        ratings : [3,4,3,2,1,3]
+    }
+    for(var i=0 ; i< tempObject.Name.length ; i++){
+        var tempName = tempObject.Name[i];
+        var tempRatings = tempObject.ratings[i];
+        var tempTempObject = {
+            Name : tempName,
+            Ratings : tempRatings
+        }
+        listOfBroadbands.push(tempTempObject);
+    }
+    res.send(listOfBroadband);
+}
 
 
 exports.getPrices = getPrices;
+exports.listOfBroadband = listOfBroadband;
