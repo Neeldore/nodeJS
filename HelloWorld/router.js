@@ -4,7 +4,7 @@ module.exports = function (app) {
         cryptoWatch.getPrices(res);
     })
     app.get('/broadband', function (req, res) {
-        cryptoWatch.listOfBroadband(res);
+        cryptoWatch.googleBroadBands(res);
     })
     app.get('/googleisp' , function(req , res){
         cryptoWatch.googleBroadBands(res);
