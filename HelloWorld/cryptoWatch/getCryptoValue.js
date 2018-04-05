@@ -11,18 +11,18 @@ var getPrices = function (res) {
     })
 
 }
-var listOfBroadband = function(res){
+var listOfBroadband = function (res) {
     var listOfBroadbands = [];
     var tempObject = {
-        Name : ["Hathway" , "ACT" , "Spectranet" , "NET" , "GCN" , "BBNL"] ,
-        ratings : [3,4,3,2,1,3]
+        Name: ["Hathway", "ACT", "Spectranet", "NET", "GCN", "BBNL"],
+        ratings: [3, 4, 3, 2, 1, 3]
     }
-    for(var i=0 ; i< tempObject.Name.length ; i++){
+    for (var i = 0; i < tempObject.Name.length; i++) {
         var tempName = tempObject.Name[i];
         var tempRatings = tempObject.ratings[i];
         var tempTempObject = {
-            Name : tempName,
-            Ratings : tempRatings
+            Name: tempName,
+            Ratings: tempRatings
         }
         listOfBroadbands.push(tempTempObject);
     }
@@ -30,6 +30,18 @@ var listOfBroadband = function(res){
     res.json(listOfBroadbands);
 }
 
+var googleBroadBands = function (res) {
+    var list = [];
+    axios.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=isp+in+bangalore&key=AIzaSyCigjGhKYE2iU4UMysbrdh1Wua18B7GkCk').then(response => {
+        // console.log(response.data[0].id);
+        var arrayToSend = [];
+        // console.log(response.data);
+        for (var i = 0; i < response.data.results.length; i++)
+            arrayToSend.push(response.data.results[i].name + '-' + response.data.results[i].rating);
+        res.send(arrayToSend);
+    })
+}
 
 exports.getPrices = getPrices;
 exports.listOfBroadband = listOfBroadband;
+exports.googleBroadBands = googleBroadBands;
