@@ -33,11 +33,17 @@ var listOfBroadband = function (res) {
 var googleBroadBands = function (res) {
     var list = [];
     axios.get('https://maps.googleapis.com/maps/api/place/textsearch/json?query=isp+in+bangalore&key=AIzaSyCigjGhKYE2iU4UMysbrdh1Wua18B7GkCk').then(response => {
-        // console.log(response.data[0].id);
         var arrayToSend = [];
-        // console.log(response.data);
-        for (var i = 0; i < response.data.results.length; i++)
-            arrayToSend.push(response.data.results[i].name + '-' + response.data.results[i].rating);
+
+        for (var i = 0; i < response.data.results.length; i++){
+            var tempName = response.data.results[i].name
+            var tempRatings = response.data.results[i].rating
+            var tempTempObject = {
+                Name: tempName,
+                Ratings: tempRatings
+            }
+            arrayToSend.push(tempTempObject);
+        }
         res.send(arrayToSend);
     })
 }
